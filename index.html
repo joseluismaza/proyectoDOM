@@ -7,12 +7,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>HTML + CSS</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="index.js" defer></script>
 </head>
 
 <body>
-  <div id="filtros" class="flex-container"></div>
-  <div id="main-container" class="flex-container"></div>
+  <header>
+    <ul>
+      <li class="image"><img src="./assets/JD.png" /></li>
+      <li class="text">Hombre</li>
+      <li class="text">Mujer</li>
+      <li class="text">Niño</li>
+      <li class="text">Ofertas</li>
+      <li class="icon filtro-icon"><i class=" fa-solid fa-filter"></i></li>
+      <li class="icon"><i class="fa-solid fa-cart-shopping"></i></li>
+      <li class="icon"><i class="fa-regular fa-user"></i></li>
+    </ul>
+  </header>
+  <section class="banner"></section>
+  <div id="filtros" class="flex-container oculto"></div>
+  <section id="main-container" class="flex-container"></section>
 </body>
 
 </html>

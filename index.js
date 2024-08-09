@@ -5,7 +5,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Nike Revolution",
     precio: 90,
-    estrellas: 5,
     img: "./assets/nike7.png",
   },
   {
@@ -13,7 +12,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Dunk Low",
     precio: 100,
-    estrellas: 3,
     img: "./assets/nike6.png",
   },
   {
@@ -21,7 +19,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Air Max 98",
     precio: 150,
-    estrellas: 2,
     img: "./assets/nike5.png",
   },
   {
@@ -29,7 +26,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Air Force 1",
     precio: 130,
-    estrellas: 4,
     img: "./assets/nike4.png",
   },
   {
@@ -37,7 +33,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Full Force Low",
     precio: 70,
-    estrellas: 5,
     img: "./assets/nike3.png",
   },
   {
@@ -45,7 +40,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Air Max SC",
     precio: 160,
-    estrellas: 5,
     img: "./assets/nike2.png",
   },
   {
@@ -53,7 +47,6 @@ const zapatillas = [
     nombre: "Nike Originals",
     modelo: "Air Max 1",
     precio: 120,
-    estrellas: 3,
     img: "./assets/nike1.png",
   },
   {
@@ -61,7 +54,6 @@ const zapatillas = [
     nombre: "Adidas Originals",
     modelo: "Forum Buckle",
     precio: 100,
-    estrellas: 2,
     img: "./assets/adidas5.png",
   },
   {
@@ -69,7 +61,6 @@ const zapatillas = [
     nombre: "Adidas Originals",
     modelo: "Campus",
     precio: 120,
-    estrellas: 1,
     img: "./assets/adidas4.png",
   },
   {
@@ -77,7 +68,6 @@ const zapatillas = [
     nombre: "Adidas Originals",
     modelo: "Gazelle",
     precio: 90,
-    estrellas: 3,
     img: "./assets/adidas3.png",
   },
   {
@@ -85,7 +75,6 @@ const zapatillas = [
     nombre: "Adidas Originals",
     modelo: "Handball Spezial",
     precio: 140,
-    estrellas: 5,
     img: "./assets/adidas1.png",
   },
   {
@@ -93,7 +82,6 @@ const zapatillas = [
     nombre: "Adidas Originals",
     modelo: "Handball Spezial",
     precio: 120,
-    estrellas: 4,
     img: "./assets/adidas2.png",
   },
   {
@@ -101,7 +89,6 @@ const zapatillas = [
     nombre: "New Balance",
     modelo: "NB 9060",
     precio: 80,
-    estrellas: 4,
     img: "./assets/nb1.png",
   },
   {
@@ -109,7 +96,6 @@ const zapatillas = [
     nombre: "New Balance",
     modelo: "NB 327",
     precio: 120,
-    estrellas: 2,
     img: "./assets/nb3.png",
   },
   {
@@ -117,7 +103,6 @@ const zapatillas = [
     nombre: "New Balance",
     modelo: "NB 9060",
     precio: 100,
-    estrellas: 1,
     img: "./assets/nb2.png",
   },
   {
@@ -125,7 +110,6 @@ const zapatillas = [
     nombre: "New Balance",
     modelo: "NB 480",
     precio: 150,
-    estrellas: 5,
     img: "./assets/nb4.png",
   },
 ];
@@ -135,7 +119,6 @@ let MODELO = "";
 
 const NOMBRES = [];
 let NOMBRE = "";
-
 
 // Función para filtrar zapatillas por modelo y nombre seleccionado
 const filtrar = () => {
@@ -187,6 +170,12 @@ fillNombres(zapatillas);
 const createSelect = (items, divFiltros, type) => {
   const select = document.createElement("select");
 
+  // variable para dejar en default los filtros
+  const defaulOption = document.createElement("option");
+  defaulOption.value = "";
+  defaulOption.textContent = `Selecciona un ${type}`;
+  select.appendChild(defaulOption);
+
   for (const item of items) {
     const option = document.createElement("option");
     option.value = item;
@@ -202,7 +191,6 @@ const createSelect = (items, divFiltros, type) => {
     } else if (type === "modelo") {
       MODELO = e.target.value;
     }
-    filtrar();
   });
 };
 
@@ -215,7 +203,6 @@ const createSelectModel = () => {
   const divFiltros = document.querySelector("#filtros");
   createSelect(MODELOS, divFiltros, "modelo");
 };
-
 
 // grid de productos
 const printZapatillas = (zapas) => {
@@ -231,34 +218,36 @@ const printZapatillas = (zapas) => {
     const divModelPrice = document.createElement("div");
     const modelo = document.createElement("p");
     const precio = document.createElement("p");
-    const divEstrellas = document.createElement("div");
+    const comprarButton = document.createElement("button");
+
+    //const divEstrellas = document.createElement("div");
 
     // Bucle para las estrellas
-    for (let i = 1; i <= 5; i++) {
-      const estrella = document.createElement("div");
-      estrella.className = "estrella";
-      // Pintar de color la estrella en función de la valoración indicada
-      if (zapatillas.estrellas >= i) {
-        estrella.classList.add("rellena");
-      }
-      divEstrellas.appendChild(estrella);
-    }
+    // for (let i = 1; i <= 5; i++) {
+    //   const estrella = document.createElement("div");
+    //   estrella.className = "estrella";
+    //   // Pintar de color la estrella en función de la valoración indicada
+    //   if (zapatillas.estrellas >= i) {
+    //     estrella.classList.add("rellena");
+    //   }
+    //   divEstrellas.appendChild(estrella);
+    // }
 
     // Añadir clases
     divZapatillas.classList.add("flex-container", "sombra");
     divImg.classList.add("img-container");
     divDetalles.classList.add("detalles-container");
-    divEstrellas.classList.add("estrellas", "flex-container");
+    // divEstrellas.classList.add("estrellas", "flex-container");
     divModelPrice.classList.add("modelo-precio-container");
     nombre.classList.add("nombre");
-    modelo.classList.add("modelo");
-    precio.classList.add("precio");
+    comprarButton.className = "comprar";
 
     // Impresión de los datos
     img.src = zapatillas.img;
     nombre.textContent = zapatillas.nombre;
     modelo.textContent = zapatillas.modelo;
     precio.textContent = `${zapatillas.precio} €`;
+    comprarButton.textContent = "Comprar";
 
     // Estructura contenido HTML
     divImg.appendChild(img);
@@ -266,16 +255,53 @@ const printZapatillas = (zapas) => {
     divModelPrice.appendChild(modelo);
     divModelPrice.appendChild(precio);
     divDetalles.appendChild(divModelPrice);
-    divDetalles.appendChild(divEstrellas);
+    //divDetalles.appendChild(divEstrellas);
     divZapatillas.appendChild(divImg);
     divZapatillas.appendChild(divDetalles);
     divZapas.appendChild(divZapatillas);
+    divDetalles.appendChild(comprarButton);
   });
+};
+
+//Limpiar y filtrar
+const createButtons = () => {
+  const divFiltros = document.querySelector("#filtros");
+
+  const filtrarButton = document.createElement("button");
+  filtrarButton.textContent = "Filtrar";
+  filtrarButton.addEventListener("click", filtrar);
+
+  const limpiarButton = document.createElement("button");
+  limpiarButton.textContent = "Limpiar";
+  limpiarButton.addEventListener("click", limpiar);
+
+  divFiltros.appendChild(filtrarButton);
+  divFiltros.appendChild(limpiarButton);
+};
+
+// Limpiar divFiltros
+const limpiar = () => {
+  NOMBRE = "";
+  MODELO = "";
+  document.querySelectorAll("#filtros select").forEach((select) => {
+    select.value = "";
+  });
+  printZapatillas(zapatillas);
 };
 
 printZapatillas(zapatillas);
 createSelectModel();
 createSelectName();
+createButtons();
+
+// // Seleccionar el icono del filtro y el contenedor de filtros
+// const filtroIcon = document.querySelector('.filtro-icon'); // Asegúrate que esta línea apunta correctamente al icono
+// const filtrosContainer = document.getElementById('filtros'); // Asegúrate que apunta al contenedor de filtros
+
+// // Añadir un evento de clic al icono del filtro
+// filtroIcon.addEventListener('click', () => {
+//   // Alternar la clase "oculto" para mostrar/ocultar los filtros
+//   filtrosContainer.classList.toggle('oculto');
+// });
 
 /* MENU */
-

@@ -5,11 +5,6 @@
   font-family: var(--rtc-primary-font);
 }
 
-ul,
-ol {
-  list-style: none;
-}
-
 a {
   text-decoration: none;
 }
@@ -69,6 +64,65 @@ body {
   --rtc-gap-xl: 50px;
 }
 
+/* HEADER */
+
+header {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--rtc-padding-xs);
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: var(--rtc-gap-xl);
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li.icon {
+  margin-left: 20px;
+  color: white;
+  font-size: 24px;
+  justify-content: right;
+}
+
+ul li img {
+  width: 50px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+}
+
+.text {
+  justify-content: center;
+  color: var(--rtc-color-2);
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.text:hover {
+  color: white;
+}
+
+/* BANNER */
+.banner {
+  background-image: url("./assets/jd_banner.jfif");
+  width: 100%;
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+}
+
 #main-container {
   margin: var(--rtc-margin-section) 0px;
 }
@@ -82,7 +136,6 @@ body {
 .flex-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: var(--rtc-gap-xl);
   flex-wrap: wrap;
 }
@@ -106,54 +159,81 @@ body {
 .detalles-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: var(--rtc-gap-xs);
+}
+
+.detalles-container > h4, p{
+  text-align: left;
 }
 
 .nombre {
   font-weight: bold;
+  padding: 10px;
 }
 
 .modelo-precio-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
   font-size: 15px;
-  padding-bottom: 25px;
-}
-
-/* Estrella */
-.estrellas {
-  display: flex;
-  gap: var(--rtc-gap-xs);
-  padding-bottom: 20px;
-}
-
-.estrella {
-  width: 25px;
-  height: 25px;
-  background-color: lightgrey;
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-}
-
-.rellena {
-  background-color: aquamarine;
+  margin-bottom: 20px;
+  gap: 50px;
 }
 
 /* FILTROS */
 
-#filtros{
-  height: 100px;
+#filtros {
+  display: flex; /* Asegura que los filtros están centrados */
+  justify-content: center;
+  align-items: center;
   padding: var(--rtc-padding-l);
+  gap: var(--rtc-gap-s); /* Espaciado entre los elementos */
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none; /* Sin borde para un diseño más limpio */
+  cursor: pointer;
+  background-color: var(--rtc-special-color-4); /* Botones por defecto con color */
+  transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+.comprar {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 15px;
+  background-color: var(--rtc-special-color-6); /* Color específico para el botón de comprar */
+  color: white; /* Texto blanco para resaltar */
+}
+
+button:hover {
+  background-color: var(--rtc-special-color-2); /* Cambia el color al pasar el ratón */
+}
+
+select {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  border: var(--rtc-primary-border); /* Utiliza el color de borde definido */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+select:focus {
+  outline: none; /* Elimina el borde al enfocarse */
+  border-color: var(--rtc-color-4); /* Cambia el borde al enfocarse */
+}
+
+.flex-container .flex-container {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: var(--rtc-br);
+  transition: transform 0.3s;
+}
+
+.flex-container .flex-container:hover {
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
 }
