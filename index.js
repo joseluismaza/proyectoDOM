@@ -120,68 +120,69 @@ let MODELO = "";
 const NOMBRES = [];
 let NOMBRE = "";
 
-// Función para filtrar zapatillas por modelo y nombre seleccionado
-const filtrar = () => {
-  const filtered = [];
+const PRECIOS = [];
+let PRECIO = "";
 
-  //FILTRO DE NOMBRE Y MODELO
-  for (const zapa of zapatillas) {
-    if (NOMBRE && MODELO) {
-      if (zapa.nombre === NOMBRE && zapa.modelo === MODELO) {
-        filtered.push(zapa);
-      }
-    } else if (NOMBRE) {
-      if (zapa.nombre === NOMBRE) {
-        filtered.push(zapa);
-      }
-    } else if (MODELO) {
-      if (zapa.modelo === MODELO) {
-        filtered.push(zapa);
-      }
-    }
-  }
+// Función para filtrar zapatillas por modelo, nombre y precio seleccionado
+const filtrar = () => {
+  const filtered = zapatillas.filter((zapa) => {
+    const nombreCoincide = !NOMBRE || zapa.nombre === NOMBRE;
+    const modeloCoincide = !MODELO || zapa.modelo === MODELO;
+    const precioCoincide = !PRECIO || zapa.precio.toString() === PRECIO;
+
+    return nombreCoincide && modeloCoincide && precioCoincide;
+  });
   printZapatillas(filtered);
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  const filtroIcon = document.querySelector(".filtro-icon");
+  const filtrosContainer = document.getElementById("filtros");
+
+  filtroIcon.addEventListener("click", () => {
+    filtrosContainer.classList.toggle("oculto");
+    filtroIcon.classList.toggle("filtro-activo");
+  });
+});
+
 // Función para llenar el array de modelos únicos
 const fillModelos = (zapas) => {
-  // Vaciar el array
-  MODELOS.splice(0);
-  for (const zapa of zapas) {
-    if (!MODELOS.includes(zapa.modelo)) {
-      MODELOS.push(zapa.modelo);
-    }
-  }
+  MODELOS.splice(0); // Limpiar el array
+  const modelosSet = new Set(zapas.map((zapa) => zapa.modelo));
+  MODELOS.push(...modelosSet);
 };
 fillModelos(zapatillas);
 
 //array de nombres únicos
 const fillNombres = (zapas) => {
-  NOMBRES.splice(0);
-  for (const zapa of zapas) {
-    if (!NOMBRES.includes(zapa.nombre)) {
-      NOMBRES.push(zapa.nombre);
-    }
-  }
+  NOMBRES.splice(0); // Limpiar el array
+  const nombresSet = new Set(zapas.map((zapa) => zapa.nombre));
+  NOMBRES.push(...nombresSet);
 };
 fillNombres(zapatillas);
+
+const fillPrecios = (zapas) => {
+  PRECIOS.splice(0);
+  const preciosSet = new Set(zapas.map((zapa) => zapa.precio));
+  PRECIOS.push(...preciosSet);
+};
+fillPrecios(zapatillas);
 
 // Creación genérica de selectores
 const createSelect = (items, divFiltros, type) => {
   const select = document.createElement("select");
 
-  // variable para dejar en default los filtros
   const defaulOption = document.createElement("option");
   defaulOption.value = "";
   defaulOption.textContent = `Selecciona un ${type}`;
   select.appendChild(defaulOption);
 
-  for (const item of items) {
+  items.forEach((item) => {
     const option = document.createElement("option");
     option.value = item;
     option.textContent = item;
     select.appendChild(option);
-  }
+  });
 
   divFiltros.appendChild(select);
 
@@ -190,6 +191,8 @@ const createSelect = (items, divFiltros, type) => {
       NOMBRE = e.target.value;
     } else if (type === "modelo") {
       MODELO = e.target.value;
+    } else if (type === "precio") {
+      PRECIO = e.target.value;
     }
   });
 };
@@ -204,10 +207,17 @@ const createSelectModel = () => {
   createSelect(MODELOS, divFiltros, "modelo");
 };
 
+const createSelectPrecio = () => {
+  const divFiltros = document.querySelector("#filtros");
+  createSelect(PRECIOS, divFiltros, "precio");
+};
+
 // grid de productos
 const printZapatillas = (zapas) => {
   const divZapas = document.querySelector("#main-container");
   divZapas.innerHTML = ""; // Limpiar el contenido anterior
+
+  const fragment = document.createDocumentFragment();
 
   zapas.forEach((zapatillas) => {
     const divZapatillas = document.createElement("div");
@@ -220,47 +230,31 @@ const printZapatillas = (zapas) => {
     const precio = document.createElement("p");
     const comprarButton = document.createElement("button");
 
-    //const divEstrellas = document.createElement("div");
-
-    // Bucle para las estrellas
-    // for (let i = 1; i <= 5; i++) {
-    //   const estrella = document.createElement("div");
-    //   estrella.className = "estrella";
-    //   // Pintar de color la estrella en función de la valoración indicada
-    //   if (zapatillas.estrellas >= i) {
-    //     estrella.classList.add("rellena");
-    //   }
-    //   divEstrellas.appendChild(estrella);
-    // }
-
-    // Añadir clases
     divZapatillas.classList.add("flex-container", "sombra");
     divImg.classList.add("img-container");
     divDetalles.classList.add("detalles-container");
-    // divEstrellas.classList.add("estrellas", "flex-container");
     divModelPrice.classList.add("modelo-precio-container");
     nombre.classList.add("nombre");
     comprarButton.className = "comprar";
 
-    // Impresión de los datos
     img.src = zapatillas.img;
     nombre.textContent = zapatillas.nombre;
     modelo.textContent = zapatillas.modelo;
     precio.textContent = `${zapatillas.precio} €`;
     comprarButton.textContent = "Comprar";
 
-    // Estructura contenido HTML
     divImg.appendChild(img);
     divDetalles.appendChild(nombre);
     divModelPrice.appendChild(modelo);
     divModelPrice.appendChild(precio);
     divDetalles.appendChild(divModelPrice);
-    //divDetalles.appendChild(divEstrellas);
     divZapatillas.appendChild(divImg);
     divZapatillas.appendChild(divDetalles);
-    divZapas.appendChild(divZapatillas);
+    fragment.appendChild(divZapatillas);
     divDetalles.appendChild(comprarButton);
   });
+
+  divZapas.appendChild(fragment);
 };
 
 //Limpiar y filtrar
@@ -283,6 +277,7 @@ const createButtons = () => {
 const limpiar = () => {
   NOMBRE = "";
   MODELO = "";
+  PRECIO = "";
   document.querySelectorAll("#filtros select").forEach((select) => {
     select.value = "";
   });
@@ -292,16 +287,5 @@ const limpiar = () => {
 printZapatillas(zapatillas);
 createSelectModel();
 createSelectName();
+createSelectPrecio();
 createButtons();
-
-// // Seleccionar el icono del filtro y el contenedor de filtros
-// const filtroIcon = document.querySelector('.filtro-icon'); // Asegúrate que esta línea apunta correctamente al icono
-// const filtrosContainer = document.getElementById('filtros'); // Asegúrate que apunta al contenedor de filtros
-
-// // Añadir un evento de clic al icono del filtro
-// filtroIcon.addEventListener('click', () => {
-//   // Alternar la clase "oculto" para mostrar/ocultar los filtros
-//   filtrosContainer.classList.toggle('oculto');
-// });
-
-/* MENU */

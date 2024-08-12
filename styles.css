@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: var(--rtc-primary-font);
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
 a {
@@ -13,57 +17,6 @@ body {
   min-height: 100svh;
 }
 
-:root {
-  /* FONTS */
-  --rtc-primary-font: "Work Sans", sans-serif;
-
-  /* BRANDING COLORS */
-  --rtc-color-1: #f9faff;
-  --rtc-color-2: #b6b6b6;
-  --rtc-color-3: #4a4a4a;
-  --rtc-color-4: #003f62;
-  --rtc-special-color-1: #a3fcb1;
-  --rtc-special-color-2: #fcc3a3;
-  --rtc-special-color-3: #a3f7fc;
-  --rtc-special-color-4: #fca3a3;
-  --rtc-special-color-5: #f5e6ff;
-  --rtc-special-color-6: #7be498;
-  --rtc-special-color-7: #f7c29b;
-
-  /* BACKGROUND-COLORS */
-  --rtc-primary-bg: var(--rtc-color-1);
-
-  /* TEXT-COLORS */
-  --rtc-primary-text: var(--rtc-color-3);
-  --rtc-secondary-text: var(--rtc-color-4);
-
-  /* BORDER-COLORS */
-  --rtc-primary-border: 1px solid var(--rtc-color-2);
-
-  /* BORDER RADIUS */
-  --rtc-br: 8px;
-
-  /* SPACINGS */
-  --rtc-margin-xs: 10px;
-  --rtc-margin-s: 20px;
-  --rtc-margin-m: 30px;
-  --rtc-margin-l: 40px;
-  --rtc-margin-xl: 50px;
-  --rtc-margin-section: 100px;
-
-  --rtc-padding-xs: 10px;
-  --rtc-padding-s: 20px;
-  --rtc-padding-m: 30px;
-  --rtc-padding-l: 40px;
-  --rtc-padding-xl: 50px;
-
-  --rtc-gap-xs: 10px;
-  --rtc-gap-s: 20px;
-  --rtc-gap-m: 30px;
-  --rtc-gap-l: 40px;
-  --rtc-gap-xl: 50px;
-}
-
 /* HEADER */
 
 header {
@@ -72,7 +25,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--rtc-padding-xs);
+  padding: 10px;
 }
 
 ul {
@@ -80,7 +33,7 @@ ul {
   justify-content: center;
   align-items: center;
   flex: 1;
-  gap: var(--rtc-gap-xl);
+  gap: 50px;
   margin: 0;
   padding: 0;
 }
@@ -95,7 +48,6 @@ li.icon {
   margin-left: 20px;
   color: white;
   font-size: 24px;
-  justify-content: right;
 }
 
 ul li img {
@@ -105,7 +57,7 @@ ul li img {
 
 .text {
   justify-content: center;
-  color: var(--rtc-color-2);
+  color: #b6b6b6;
   transition: color 0.3s;
   cursor: pointer;
 }
@@ -124,7 +76,7 @@ ul li img {
 }
 
 #main-container {
-  margin: var(--rtc-margin-section) 0px;
+  margin: 0 auto;
 }
 
 #main-container > div {
@@ -136,18 +88,22 @@ ul li img {
 .flex-container {
   display: flex;
   justify-content: center;
-  gap: var(--rtc-gap-xl);
+  gap: 50px;
   flex-wrap: wrap;
+  text-align: left;
+  padding: 16px;
+  transition: transform 0.3s;
 }
 
 .sombra {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: #f9f9f9;
 }
 
 .img-container {
   width: 100%;
   height: 200px;
-  background-color: var(--rtc-color-1);
+  background-color: #f9faff;
 }
 
 .img-container > img {
@@ -159,16 +115,13 @@ ul li img {
 .detalles-container {
   display: flex;
   flex-direction: column;
-  gap: var(--rtc-gap-xs);
-}
-
-.detalles-container > h4, p{
-  text-align: left;
+  gap: 10px;
 }
 
 .nombre {
   font-weight: bold;
   padding: 10px;
+  font-size: 15px;
 }
 
 .modelo-precio-container {
@@ -181,59 +134,142 @@ ul li img {
 /* FILTROS */
 
 #filtros {
-  display: flex; /* Asegura que los filtros están centrados */
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--rtc-padding-l);
-  gap: var(--rtc-gap-s); /* Espaciado entre los elementos */
+  padding: 40px;
+  gap: 20px;
 }
 
 button {
   padding: 10px;
   border-radius: 5px;
-  border: none; /* Sin borde para un diseño más limpio */
+  border: none;
   cursor: pointer;
-  background-color: var(--rtc-special-color-4); /* Botones por defecto con color */
-  transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+  background-color: #f25f5c;
+  transition: background-color 0.3s;
 }
 
 .comprar {
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
   font-size: 15px;
-  background-color: var(--rtc-special-color-6); /* Color específico para el botón de comprar */
-  color: white; /* Texto blanco para resaltar */
+  background-color: #70c1b3;
+  color: white;
 }
 
 button:hover {
-  background-color: var(--rtc-special-color-2); /* Cambia el color al pasar el ratón */
+  background-color: #ffe066;
+  color: #50514f;
 }
 
 select {
   padding: 10px;
   border-radius: 5px;
   font-size: 14px;
-  border: var(--rtc-primary-border); /* Utiliza el color de borde definido */
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-}
-
-select:focus {
-  outline: none; /* Elimina el borde al enfocarse */
-  border-color: var(--rtc-color-4); /* Cambia el borde al enfocarse */
-}
-
-.flex-container .flex-container {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #ddd;
-  padding: 16px;
-  background-color: #f9f9f9;
-  border-radius: var(--rtc-br);
-  transition: transform 0.3s;
 }
 
 .flex-container .flex-container:hover {
   transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+/* ocultar los filtros */
+.filtros.oculto {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+.filtro-icon {
+  cursor: pointer;
+}
+
+.filtro-icon.filtro-activo {
+  color: #fae702;
+}
+
+/*MENU */
+
+.menu-item {
+  display: inline-block;
+}
+
+.menu-reduce {
+  display: none;
+}
+
+.menu-reduce.active ~,
+menu-item {
+  display: inline-block;
+}
+
+/* FOOTER*/
+
+footer{
+  background-color: black;
+  color: white;
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.negrita{
+  font-weight: bold;
+}
+/* RESPOSNIVE */
+@media only screen and (max-width: 1250px) {
+  .banner {
+    width: auto;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .banner {
+    width: auto;
+    height: 180px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  #filtros {
+    display: flex;
+    flex-direction: column;
+  }
+  #main-container {
+    margin: 0 auto;
+  }
+
+  .menu-item {
+    display: none;
+  }
+
+  .menu-reduce {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .banner {
+    width: auto;
+    height: 180px;
+  }
+
+  ul li.text {
+    display: none;
+  }
+
+  .menu li.menu-reduce {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 685px){
+  footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+  }
 }

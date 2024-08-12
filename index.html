@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -8,25 +8,56 @@
   <title>HTML + CSS</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
   <script src="index.js" defer></script>
 </head>
 
 <body>
   <header>
     <ul>
-      <li class="image"><img src="./assets/JD.png" /></li>
-      <li class="text">Hombre</li>
-      <li class="text">Mujer</li>
-      <li class="text">Niño</li>
-      <li class="text">Ofertas</li>
-      <li class="icon filtro-icon"><i class=" fa-solid fa-filter"></i></li>
+      <li class="image"><img src="./assets/JD.png" alt="JD Logo" /></li>
+      <li class="text menu-item">Hombre</li>
+      <li class="text menu-item">Mujer</li>
+      <li class="text menu-item">Niño</li>
+      <li class="text menu-item">Ofertas</li>
+      <li class="icon menu-reduce oculto">
+        <i class="fa-solid fa-bars"></i>
+      </li>
+      <li class="icon filtro-icon"><i class="fa-solid fa-filter"></i></li>
       <li class="icon"><i class="fa-solid fa-cart-shopping"></i></li>
       <li class="icon"><i class="fa-regular fa-user"></i></li>
     </ul>
   </header>
   <section class="banner"></section>
-  <div id="filtros" class="flex-container oculto"></div>
+  <div id="filtros" class="oculto filtros"></div>
   <section id="main-container" class="flex-container"></section>
+  <footer>
+    <div class="compra">
+      <p class="negrita">Compra con JD</p>
+      <p>Guia de tallas</p>
+      <p>Buscador de tallas</p>
+      <p>Descuento estudiantes</p>
+      <p>Calendario lanzamientos</p>
+      <p>Inscribete en JDX</p>
+      <p>JD Blog</p>
+    </div>
+    <div class="atencion">
+      <p class="negrita">Atención al cliente</p>
+      <p>Preguntas frecuentes</p>
+      <p>Envíos y devoluciones</p>
+      <p>Seguimiento de envío</p>
+      <p>Contacto</p>
+    </div>
+    <div class="aviso">
+      <p class="negrita">Aviso legal</p>
+      <p>Términos y condiciones</p>
+      <p>Promociones y condiciones</p>
+      <p>Política de privacidad</p>
+      <p>Política de Cookies</p>
+      <p>Ajustes de Cookies</p>
+      <p>Accesibilidad</p>
+    </div>
+  </footer>
 </body>
 
 </html>
