@@ -1,291 +1,154 @@
-//Array de zapatillas
+// Array de zapatillas
 const zapatillas = [
-  {
-    id: 1,
-    nombre: "Nike Originals",
-    modelo: "Nike Revolution",
-    precio: 90,
-    img: "./assets/nike7.png",
-  },
-  {
-    id: 2,
-    nombre: "Nike Originals",
-    modelo: "Dunk Low",
-    precio: 100,
-    img: "./assets/nike6.png",
-  },
-  {
-    id: 3,
-    nombre: "Nike Originals",
-    modelo: "Air Max 98",
-    precio: 150,
-    img: "./assets/nike5.png",
-  },
-  {
-    id: 4,
-    nombre: "Nike Originals",
-    modelo: "Air Force 1",
-    precio: 130,
-    img: "./assets/nike4.png",
-  },
-  {
-    id: 5,
-    nombre: "Nike Originals",
-    modelo: "Full Force Low",
-    precio: 70,
-    img: "./assets/nike3.png",
-  },
-  {
-    id: 6,
-    nombre: "Nike Originals",
-    modelo: "Air Max SC",
-    precio: 160,
-    img: "./assets/nike2.png",
-  },
-  {
-    id: 7,
-    nombre: "Nike Originals",
-    modelo: "Air Max 1",
-    precio: 120,
-    img: "./assets/nike1.png",
-  },
-  {
-    id: 8,
-    nombre: "Adidas Originals",
-    modelo: "Forum Buckle",
-    precio: 100,
-    img: "./assets/adidas5.png",
-  },
-  {
-    id: 9,
-    nombre: "Adidas Originals",
-    modelo: "Campus",
-    precio: 120,
-    img: "./assets/adidas4.png",
-  },
-  {
-    id: 10,
-    nombre: "Adidas Originals",
-    modelo: "Gazelle",
-    precio: 90,
-    img: "./assets/adidas3.png",
-  },
-  {
-    id: 11,
-    nombre: "Adidas Originals",
-    modelo: "Handball Spezial",
-    precio: 140,
-    img: "./assets/adidas1.png",
-  },
-  {
-    id: 12,
-    nombre: "Adidas Originals",
-    modelo: "Handball Spezial",
-    precio: 120,
-    img: "./assets/adidas2.png",
-  },
-  {
-    id: 13,
-    nombre: "New Balance",
-    modelo: "NB 9060",
-    precio: 80,
-    img: "./assets/nb1.png",
-  },
-  {
-    id: 14,
-    nombre: "New Balance",
-    modelo: "NB 327",
-    precio: 120,
-    img: "./assets/nb3.png",
-  },
-  {
-    id: 15,
-    nombre: "New Balance",
-    modelo: "NB 9060",
-    precio: 100,
-    img: "./assets/nb2.png",
-  },
-  {
-    id: 16,
-    nombre: "New Balance",
-    modelo: "NB 480",
-    precio: 150,
-    img: "./assets/nb4.png",
-  },
+  { id: 1, nombre: "Nike Originals", modelo: "Nike Revolution", precio: 90, img: "./assets/nike7.png" },
+  { id: 2, nombre: "Nike Originals", modelo: "Dunk Low", precio: 100, img: "./assets/nike6.png" },
+  { id: 3, nombre: "Nike Originals", modelo: "Air Max 98", precio: 150, img: "./assets/nike5.png" },
+  { id: 4, nombre: "Nike Originals", modelo: "Air Force 1", precio: 130, img: "./assets/nike4.png" },
+  { id: 5, nombre: "Nike Originals", modelo: "Full Force Low", precio: 70, img: "./assets/nike3.png" },
+  { id: 6, nombre: "Nike Originals", modelo: "Air Max SC", precio: 160, img: "./assets/nike2.png" },
+  { id: 7, nombre: "Nike Originals", modelo: "Air Max 1", precio: 120, img: "./assets/nike1.png" },
+  { id: 8, nombre: "Adidas Originals", modelo: "Forum Buckle", precio: 100, img: "./assets/adidas5.png" },
+  { id: 9, nombre: "Adidas Originals", modelo: "Campus", precio: 120, img: "./assets/adidas4.png" },
+  { id: 10, nombre: "Adidas Originals", modelo: "Gazelle", precio: 90, img: "./assets/adidas3.png" },
+  { id: 11, nombre: "Adidas Originals", modelo: "Handball Spezial", precio: 140, img: "./assets/adidas1.png" },
+  { id: 12, nombre: "Adidas Originals", modelo: "Handball Spezial", precio: 120, img: "./assets/adidas2.png" },
+  { id: 13, nombre: "New Balance", modelo: "NB 9060", precio: 80, img: "./assets/nb1.png" },
+  { id: 14, nombre: "New Balance", modelo: "NB 327", precio: 120, img: "./assets/nb3.png" },
+  { id: 15, nombre: "New Balance", modelo: "NB 9060", precio: 100, img: "./assets/nb2.png" },
+  { id: 16, nombre: "New Balance", modelo: "NB 480", precio: 150, img: "./assets/nb4.png" },
 ];
 
-const MODELOS = [];
-let MODELO = "";
-
-const NOMBRES = [];
-let NOMBRE = "";
-
-const PRECIOS = [];
-let PRECIO = "";
-
-// Función para filtrar zapatillas por modelo, nombre y precio seleccionado
-const filtrar = () => {
-  const filtered = zapatillas.filter((zapa) => {
-    const nombreCoincide = !NOMBRE || zapa.nombre === NOMBRE;
-    const modeloCoincide = !MODELO || zapa.modelo === MODELO;
-    const precioCoincide = !PRECIO || zapa.precio.toString() === PRECIO;
-
-    return nombreCoincide && modeloCoincide && precioCoincide;
-  });
-  printZapatillas(filtered);
-};
+let filtroActual = { nombre: "", modelo: "", precio: "" };
 
 document.addEventListener("DOMContentLoaded", () => {
   const filtroIcon = document.querySelector(".filtro-icon");
   const filtrosContainer = document.getElementById("filtros");
+  const menuIcon = document.querySelector(".fa-bars");
+  const menuList = document.querySelector(".menu-desplegable"); // Selecciona la lista específica del menú desplegable
 
+  // Funcionalidad para mostrar/ocultar filtros
   filtroIcon.addEventListener("click", () => {
     filtrosContainer.classList.toggle("oculto");
     filtroIcon.classList.toggle("filtro-activo");
   });
-});
 
-// Función para llenar el array de modelos únicos
-const fillModelos = (zapas) => {
-  MODELOS.splice(0); // Limpiar el array
-  const modelosSet = new Set(zapas.map((zapa) => zapa.modelo));
-  MODELOS.push(...modelosSet);
-};
-fillModelos(zapatillas);
-
-//array de nombres únicos
-const fillNombres = (zapas) => {
-  NOMBRES.splice(0); // Limpiar el array
-  const nombresSet = new Set(zapas.map((zapa) => zapa.nombre));
-  NOMBRES.push(...nombresSet);
-};
-fillNombres(zapatillas);
-
-const fillPrecios = (zapas) => {
-  PRECIOS.splice(0);
-  const preciosSet = new Set(zapas.map((zapa) => zapa.precio));
-  PRECIOS.push(...preciosSet);
-};
-fillPrecios(zapatillas);
-
-// Creación genérica de selectores
-const createSelect = (items, divFiltros, type) => {
-  const select = document.createElement("select");
-
-  const defaulOption = document.createElement("option");
-  defaulOption.value = "";
-  defaulOption.textContent = `Selecciona un ${type}`;
-  select.appendChild(defaulOption);
-
-  items.forEach((item) => {
-    const option = document.createElement("option");
-    option.value = item;
-    option.textContent = item;
-    select.appendChild(option);
-  });
-
-  divFiltros.appendChild(select);
-
-  select.addEventListener("change", (e) => {
-    if (type === "nombre") {
-      NOMBRE = e.target.value;
-    } else if (type === "modelo") {
-      MODELO = e.target.value;
-    } else if (type === "precio") {
-      PRECIO = e.target.value;
+  // Funcionalidad para mostrar/ocultar menú
+  menuIcon.addEventListener("click", () => {
+    if (window.innerWidth <= 950) { // Solo aplica en pantallas menores de 950px
+      menuList.classList.toggle("menu-abierto"); // Alterna la clase `menu-abierto` para mostrar u ocultar el menú
+      menuIcon.classList.toggle("filtro-activo");
     }
   });
+
+  createSelectors(filtrosContainer);
+  createButtons(filtrosContainer);
+  printZapatillas(zapatillas);
+});
+
+
+
+// Función para crear selectores dinámicamente
+const createSelectors = (container) => {
+  const uniqueValues = (key) => [...new Set(zapatillas.map(zapa => zapa[key]))];
+  const filters = [
+    { items: uniqueValues("nombre"), type: "nombre" },
+    { items: uniqueValues("modelo"), type: "modelo" },
+    { items: uniqueValues("precio"), type: "precio" }
+  ];
+
+  filters.forEach(({ items, type }) => {
+    const select = document.createElement("select");
+    select.appendChild(new Option(`Selecciona un ${type}`, ""));
+    items.forEach(item => select.appendChild(new Option(item, item)));
+
+    select.addEventListener("change", e => {
+      filtroActual[type] = e.target.value;
+    });
+
+    container.appendChild(select);
+  });
 };
 
-const createSelectName = () => {
-  const divFiltros = document.querySelector("#filtros");
-  createSelect(NOMBRES, divFiltros, "nombre");
+// Función para crear botones de filtrar y limpiar
+const createButtons = (container) => {
+  const filtrarButton = document.createElement("button");
+  filtrarButton.textContent = "Filtrar";
+  filtrarButton.addEventListener("click", () => printZapatillas(filtrarZapatillas()));
+
+  const limpiarButton = document.createElement("button");
+  limpiarButton.textContent = "Limpiar";
+  limpiarButton.addEventListener("click", () => {
+    filtroActual = { nombre: "", modelo: "", precio: "" };
+    document.querySelectorAll("#filtros select").forEach(select => select.value = "");
+    printZapatillas(zapatillas);
+  });
+
+  container.appendChild(filtrarButton);
+  container.appendChild(limpiarButton);
 };
 
-const createSelectModel = () => {
-  const divFiltros = document.querySelector("#filtros");
-  createSelect(MODELOS, divFiltros, "modelo");
+// Función para filtrar zapatillas
+const filtrarZapatillas = () => {
+  return zapatillas.filter(({ nombre, modelo, precio }) => {
+    return (!filtroActual.nombre || nombre === filtroActual.nombre) &&
+      (!filtroActual.modelo || modelo === filtroActual.modelo) &&
+      (!filtroActual.precio || precio.toString() === filtroActual.precio);
+  });
 };
 
-const createSelectPrecio = () => {
-  const divFiltros = document.querySelector("#filtros");
-  createSelect(PRECIOS, divFiltros, "precio");
-};
-
-// grid de productos
+// Función para mostrar zapatillas en pantalla
 const printZapatillas = (zapas) => {
   const divZapas = document.querySelector("#main-container");
   divZapas.innerHTML = ""; // Limpiar el contenido anterior
 
-  const fragment = document.createDocumentFragment();
+  if (zapas.length === 0) {
+    const mensaje = document.createElement("p");
+    mensaje.textContent = "No se encontraron zapatillas que coincidan con los filtros.";
+    divZapas.appendChild(mensaje);
+    return;
+  }
 
-  zapas.forEach((zapatillas) => {
+  zapas.forEach(({ nombre, modelo, precio, img }) => {
     const divZapatillas = document.createElement("div");
-    const divImg = document.createElement("div");
-    const img = document.createElement("img");
-    const divDetalles = document.createElement("div");
-    const nombre = document.createElement("h4");
-    const divModelPrice = document.createElement("div");
-    const modelo = document.createElement("p");
-    const precio = document.createElement("p");
-    const comprarButton = document.createElement("button");
-
     divZapatillas.classList.add("flex-container", "sombra");
-    divImg.classList.add("img-container");
-    divDetalles.classList.add("detalles-container");
-    divModelPrice.classList.add("modelo-precio-container");
-    nombre.classList.add("nombre");
-    comprarButton.className = "comprar";
 
-    img.src = zapatillas.img;
-    nombre.textContent = zapatillas.nombre;
-    modelo.textContent = zapatillas.modelo;
-    precio.textContent = `${zapatillas.precio} €`;
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img-container");
+    const imgElement = document.createElement("img");
+    imgElement.src = img;
+    imgElement.alt = nombre;
+    imgContainer.appendChild(imgElement);
+
+    const detallesContainer = document.createElement("div");
+    detallesContainer.classList.add("detalles-container");
+
+    const nombreElement = document.createElement("h4");
+    nombreElement.classList.add("nombre");
+    nombreElement.textContent = nombre;
+
+    const modeloPrecioContainer = document.createElement("div");
+    modeloPrecioContainer.classList.add("modelo-precio-container");
+
+    const modeloElement = document.createElement("p");
+    modeloElement.textContent = modelo;
+
+    const precioElement = document.createElement("p");
+    precioElement.textContent = `${precio} €`;
+
+    const comprarButton = document.createElement("button");
+    comprarButton.classList.add("comprar");
     comprarButton.textContent = "Comprar";
 
-    divImg.appendChild(img);
-    divDetalles.appendChild(nombre);
-    divModelPrice.appendChild(modelo);
-    divModelPrice.appendChild(precio);
-    divDetalles.appendChild(divModelPrice);
-    divZapatillas.appendChild(divImg);
-    divZapatillas.appendChild(divDetalles);
-    fragment.appendChild(divZapatillas);
-    divDetalles.appendChild(comprarButton);
+    modeloPrecioContainer.appendChild(modeloElement);
+    modeloPrecioContainer.appendChild(precioElement);
+
+    detallesContainer.appendChild(nombreElement);
+    detallesContainer.appendChild(modeloPrecioContainer);
+    detallesContainer.appendChild(comprarButton);
+
+    divZapatillas.appendChild(imgContainer);
+    divZapatillas.appendChild(detallesContainer);
+
+    divZapas.appendChild(divZapatillas);
   });
-
-  divZapas.appendChild(fragment);
 };
-
-//Limpiar y filtrar
-const createButtons = () => {
-  const divFiltros = document.querySelector("#filtros");
-
-  const filtrarButton = document.createElement("button");
-  filtrarButton.textContent = "Filtrar";
-  filtrarButton.addEventListener("click", filtrar);
-
-  const limpiarButton = document.createElement("button");
-  limpiarButton.textContent = "Limpiar";
-  limpiarButton.addEventListener("click", limpiar);
-
-  divFiltros.appendChild(filtrarButton);
-  divFiltros.appendChild(limpiarButton);
-};
-
-// Limpiar divFiltros
-const limpiar = () => {
-  NOMBRE = "";
-  MODELO = "";
-  PRECIO = "";
-  document.querySelectorAll("#filtros select").forEach((select) => {
-    select.value = "";
-  });
-  printZapatillas(zapatillas);
-};
-
-printZapatillas(zapatillas);
-createSelectModel();
-createSelectName();
-createSelectPrecio();
-createButtons();
